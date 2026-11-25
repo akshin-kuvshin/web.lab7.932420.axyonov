@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Главная</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/script.js" defer></script>
+    <link rel="icon" href="/static/img/app-icon-192.png" type="image/png" sizes="192x192">
+    <link rel="manifest" href="/static/manifest.json">
+
+    <style>
+        .projects {
+            column-count: 2;
+            column-gap: 32px;
+        }
+
+        .projects li {
+            margin: 0 0 16px;
+            padding: 10px;
+            background-color: var(--color-stat-card);
+            border-left: 4px solid var(--color-accent);
+            border-radius: 6px;
+        }
+
+        /* adaptive layout for mobiles */
+        @media (max-width: 600px) {
+            .projects {
+                column-count: 1; /* 1 column for mobiles */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Данила Аксёнов, гр. 932420</h1>
+        <p>Путешественник</p>
+    </header>
+
+    <!-- page content (navigation links) -->
+    <nav class="site-nav" aria-label="Навигация по странице">
+        <ul>
+            <li><a href="/about">О себе</a></li>
+            <li><a href="#skills">Навыки</a></li>
+            <li><a href="#editable-skills">Редактируемые навыки</a></li>
+            <li><a href="#visited">Посещённые вершины</a></li>
+            <li><a href="#statistics">Статистика</a></li>
+            <li><a href="#feedback">Обратная связь</a></li>
+        </ul>
+
+        <button id="theme-toggler">
+            <img id="theme-toggler-icon-light"
+                 src="/static/img/theme-toggle-light.png"
+                 alt="Переключить тему">
+            <img id="theme-toggler-icon-dark"
+                 src="/static/img/theme-toggle-dark.png"
+                 alt="Переключить тему">
+        </button>
+    </nav>
+
+    <main>
+
+        <section id="skills">
+            <h2>Навыки</h2>
+
+            <div class="skills-list">
+                <article class="skill-card">
+                    <h3>Работа с основным оборудованием</h3>
+
+                    <p>Опыт работы с карабинами, страховками и др,, знание техники безопасности при обращении с ними.</p>
+                    <dl><dt>Навык</dt><dd>Туристическое снаряжение</dd><dt>Уровень</dt><dd>60%</dd></dl>
+                    <div class="progress-track" role="progressbar" aria-label="Уровень навыка работы со снаряжением" aria-valuemin="0" aria-valuemax="100" aria-valuenow="60"><div class="progress-fill" style="width: 60%"></div></div>
+                </article>
+
+                <article class="skill-card">
+                    <h3>Вязание узлов на руках</h3>
+
+                    <p>Восьмёрка, австрийский встречный, прямой, встречный, грейпвайн и др.</p>
+                    <dl><dt>Навык</dt><dd>Узлы на руках</dd><dt>Уровень</dt><dd>52%</dd></dl>
+                    <div class="progress-track" role="progressbar" aria-label="Уровень навыка вязания узлов на руках" aria-valuemin="0" aria-valuemax="100" aria-valuenow="52"><div class="progress-fill" style="width: 52%"></div></div>
+                </article>
+
+                <article class="skill-card">
+                    <h3>Вязание узлов на опоре</h3>
+
+                    <p>Булинь, удавка, карабинная удавка, штыки и др.</p>
+                    <dl><dt>Навык</dt><dd>Узлы на опоре</dd><dt>Уровень</dt><dd>42%</dd></dl>
+                    <div class="progress-track" role="progressbar" aria-label="Уровень навыка вязания узлов на опоре" aria-valuemin="0" aria-valuemax="100" aria-valuenow="42"><div class="progress-fill" style="width: 42%"></div></div>
+                </article>
+
+                <article class="skill-card">
+                    <h3>Английский язык</h3>
+
+                    <p>Общение и решение бытовых вопросов в поездках.</p>
+                    <dl><dt>Навык</dt><dd>Коммуникация</dd><dt>Уровень</dt><dd>67%</dd></dl>
+                    <div class="progress-track" role="progressbar" aria-label="Уровень знания английского языка" aria-valuemin="0" aria-valuemax="100" aria-valuenow="67"><div class="progress-fill" style="width: 67%"></div></div>
+                </article>
+            </div>
+        </section>
+
+        <section id="editable-skills">
+            <h2>Редактируемые навыки</h2>
+
+            <div class="editable-skills-controls">
+                <button id="add-editable-skill">Добавить навык</button>
+                <button id="clear-editable-skills">Очистить список навыков</button>
+                <button id="hide-editable-skills">Скрыть список навыков</button>
+            </div>
+
+            <ul id="editable-skills-list"></ul>
+        </section>
+
+        <section id="visited">
+            <h2>Посещённые вершины</h2>
+
+            <p>В хронологическом порядке:</p>
+            <ol class="projects">
+                <li>Аю-Даг (570,8);</li>
+                <li>Куш-Кая (664,3);</li>
+                <li>Кокшетау a.k.a. Синюха (947);</li>
+                <li>Имантау (621);</li>
+                <li>Роза Пик (2320).</li>
+            </ol>
+        </section>
+
+        <section id="statistics">
+            <h2>Статистика прогресса</h2>
+
+            <div class="stats-grid">
+                <article class="stat-card">
+                    <h3>Страны</h3>
+
+                    <p class="stat-value"><data value="2">2</data></p>
+                    <p>страны посещены</p>
+                </article>
+
+                <article class="stat-card">
+                    <h3>Города</h3>
+
+                    <p class="stat-value"><data value="13">13</data></p>
+                    <p>городов исследовано</p>
+                </article>
+
+                <article class="stat-card">
+                    <h3>Фото</h3>
+
+                    <p class="stat-value"><data value="69">69</data></p>
+                    <p>кадров в архиве</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="feedback">
+            <h2>Обратная связь</h2>
+
+            <!-- feedback form -->
+            <form>
+                <p> <label for="name">Имя:</label><br>
+                    <input type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Введите ваше имя">
+                </p>
+
+                <p> <label for="email">Email:</label><br>
+                    <input type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Введите ваш email">
+                </p>
+
+                <p> <label for="message">Сообщение:</label><br>
+                    <textarea id="message"
+                        name="message"
+                        placeholder="Введите ваше сообщение"
+                        rows="7"></textarea>
+                </p>
+
+                <!-- fake button - not really sending your feedback anywhere -->
+                <button style="font-size: 16px;">Отправить</button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© Данила "akshin_" Аксёнов - 2026</p>
+    </footer>
+
+</body>
+</html>
