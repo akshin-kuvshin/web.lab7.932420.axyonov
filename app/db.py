@@ -62,10 +62,10 @@ def get_products(min_price=None, max_price=None):
     return [dict(row) for row in rows]
 
 # update
-def update_product_stock(id, stock):
+def update_product_stock(product_id, stock):
     db = get_db()
     query = 'UPDATE products SET stock = ? WHERE id = ?'
-    params = (stock, id)
+    params = (stock, product_id)
 
     cursor = db.execute(query, params)
     db.commit()
@@ -73,10 +73,10 @@ def update_product_stock(id, stock):
     return cursor.rowcount == 1 # exactly 1 record was modified (> 1 is impossible, btw)
 
 # delete
-def delete_product(id):
+def delete_product(product_id):
     db = get_db()
     query = 'DELETE FROM products WHERE id = ?'
-    params = (id,)
+    params = (product_id,)
 
     cursor = db.execute(query, params)
     db.commit()
