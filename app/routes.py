@@ -4,6 +4,7 @@ from . import db
 from pathlib import Path
 from datetime import datetime
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+from math import isfinite
 
 bp = Blueprint('main', __name__)
 api_bp = Blueprint('api', __name__, url_prefix='/api')
@@ -48,9 +49,9 @@ def get_products():
     min_price = request.args.get('minPrice', type=float)
     max_price = request.args.get('maxPrice', type=float)
 
-    if min_price is not None and min_price < 0.:
+    if min_price is not None and (not isfinite(min_price) or min_price < 0.):
         return jsonify({'error': 'minPrice must be non-negative'}), HTTPStatus.BAD_REQUEST
-    if max_price is not None and max_price < 0.:
+    if max_price is not None and (not isfinite(max_price) or max_price < 0.):
         return jsonify({'error': 'maxPrice must be non-negative'}), HTTPStatus.BAD_REQUEST
 
     return jsonify(db.get_products(min_price, max_price)), HTTPStatus.OK
@@ -67,7 +68,7 @@ def add_product():
 
     if not isinstance(name, str) or not name.strip():
         return jsonify({'error': 'Invalid name'}), HTTPStatus.BAD_REQUEST
-    if not isinstance(price, (float, int)) or isinstance(price, bool) or price < 0:
+    if not isinstance(price, (float, int)) or isinstance(price, bool) or not isfinite(price) or price < 0:
         return jsonify({'error': 'Invalid price'}), HTTPStatus.BAD_REQUEST
     if not isinstance(stock, int) or isinstance(stock, bool) or stock < 0:
         return jsonify({'error': 'Invalid stock'}), HTTPStatus.BAD_REQUEST
